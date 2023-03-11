@@ -19,6 +19,7 @@ class Customer {
       vehicle: Vehicle.fromJson(json['vehicle']),
     );
   }
+  
 
   Map<String, dynamic> toJson() {
     return {
