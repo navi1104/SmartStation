@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
+import 'package:smart_station/customer/views/loginScreen.dart';
+import 'package:smart_station/main.dart';
 
 import '../models/vehicleModel.dart';
 import '../views/homePage.dart';
@@ -11,6 +13,22 @@ class AuthController extends GetxController {
   FirebaseAuth _auth = FirebaseAuth.instance;
 
   Rx<User?> firebaseUser = Rx<User?>(null);
+
+  @override
+  void onReady() {
+    super.onReady();
+    firebaseUser = Rx<User?>(_auth.currentUser);
+    firebaseUser.bindStream(_auth.authStateChanges());
+    ever(firebaseUser, _setInitialScreen);
+  }
+
+  _setInitialScreen(User? user) {
+    if (user != null) {
+      Get.offAll(() => HomePage());
+    } else {
+      Get.offAll(() => MainScreen());
+    }
+  }
 
   @override
   void onInit() {
@@ -143,7 +161,7 @@ class AuthController extends GetxController {
         actions: [
           TextButton(
             onPressed: () {
-              Get.back();
+              Get.offAll(() => LoginScreen());
             },
             child: Text("CANCEL"),
           ),
