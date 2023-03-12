@@ -17,7 +17,10 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web;
+      throw UnsupportedError(
+        'DefaultFirebaseOptions have not been configured for web - '
+        'you can reconfigure this by running the FlutterFire CLI again.',
+      );
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -46,16 +49,6 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyC_zd_5a-HGnl1DhZmHHLxwmZOERKDNYHU',
-    appId: '1:85988698552:web:000dcef0f9d5a37286874d',
-    messagingSenderId: '85988698552',
-    projectId: 'smartstation-19515',
-    authDomain: 'smartstation-19515.firebaseapp.com',
-    storageBucket: 'smartstation-19515.appspot.com',
-    measurementId: 'G-BQL6N7NQ6G',
-  );
-
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyBNpMGzw5nWd7CbfvuBeoEc05w-0AncUEc',
     appId: '1:85988698552:android:adc5ee233c70098486874d',
@@ -70,6 +63,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '85988698552',
     projectId: 'smartstation-19515',
     storageBucket: 'smartstation-19515.appspot.com',
+    androidClientId: '85988698552-q3nrqpvg7s5mr52hnfufi0dgl2odqk33.apps.googleusercontent.com',
     iosClientId: '85988698552-2a96d5bj89ps4o5kirk5j2lpvs7jg9e3.apps.googleusercontent.com',
     iosBundleId: 'com.example.smartStation',
   );

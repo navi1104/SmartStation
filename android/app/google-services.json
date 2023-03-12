@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "85988698552-q3nrqpvg7s5mr52hnfufi0dgl2odqk33.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.smart_station",
+            "certificate_hash": "291b846b2a8b2eec4c04d63592151f87755f2d57"
+          }
+        },
+        {
           "client_id": "85988698552-s4jdvfaqovfcds02pagqu1gfhdetnj11.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,6 +37,13 @@
             {
               "client_id": "85988698552-s4jdvfaqovfcds02pagqu1gfhdetnj11.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "85988698552-2a96d5bj89ps4o5kirk5j2lpvs7jg9e3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.smartStation"
+              }
             }
           ]
         }
