@@ -4,6 +4,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:smart_station/customer/controllers/custAuthController.dart';
+import 'package:smart_station/owner/controllers/oAuthController.dart';
+import 'package:smart_station/owner/views/oSignupScreen.dart';
 
 import 'customer/views/signUpScreen.dart';
 import 'firebase_options.dart';
@@ -40,7 +42,8 @@ class MainScreen extends StatelessWidget {
           children: [
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/owner');
+                Get.put(OwnerAuthController());
+                Get.to(() => OwnerRegistrationForm());
               },
               child: Text('Owner'),
             ),

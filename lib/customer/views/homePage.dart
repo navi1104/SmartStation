@@ -10,6 +10,11 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          _authController.signOut();
+        },
+      ),
       body: SafeArea(
           child: Text("Customer home " +
               _authController.firebaseUser.value!.uid.toString())),

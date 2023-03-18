@@ -36,7 +36,10 @@ dependencies:
   firebase_storage: ^11.0.15
   flutter:
     sdk: flutter
+  geocoding: ^2.1.0
+  geolocator: ^9.0.2
   get: ^4.6.5
+  permission_handler: ^10.2.0
 
 dev_dependencies:
   flutter_lints: ^2.0.0
