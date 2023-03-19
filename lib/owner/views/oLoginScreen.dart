@@ -25,6 +25,7 @@ class OwnerLoginScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             TextFormField(
+              keyboardType: TextInputType.phone,
               controller: _phoneNumberController,
               decoration: const InputDecoration(
                 labelText: 'Phone Number',
@@ -32,9 +33,9 @@ class OwnerLoginScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             ElevatedButton(
-
               onPressed: () {
-                _authController.loginWithPhone("+91${_phoneNumberController.text}");
+                _authController
+                    .loginWithPhone("+91${_phoneNumberController.text}");
               },
               child: const Text('Login'),
             ),

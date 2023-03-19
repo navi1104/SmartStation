@@ -9,12 +9,13 @@ import 'package:smart_station/owner/models/facilitiesModel.dart';
 import 'package:smart_station/owner/models/smartStationModel.dart';
 
 import '../views/oHomepage.dart';
+import '../views/oLoginScreen.dart';
 
 class OwnerAuthController extends GetxController {
   FirebaseAuth _auth = FirebaseAuth.instance;
 
   Rx<User?> firebaseUser = Rx<User?>(null);
-
+  User? get user => firebaseUser.value;
   @override
   void onReady() {
     super.onReady();
@@ -25,7 +26,7 @@ class OwnerAuthController extends GetxController {
 
   _setInitialScreen(User? user) {
     if (user != null) {
-      Get.offAll(() => OHomePage());
+      Get.offAll(() => OwnerHomePage());
     } else {
       Get.offAll(() => MainScreen());
     }
@@ -76,7 +77,7 @@ class OwnerAuthController extends GetxController {
 
             // create customer document in firestore
 
-            Get.offAll(() => OHomePage());
+            Get.offAll(() => OwnerHomePage());
           },
           codeAutoRetrievalTimeout: (String verificationId) {},
           timeout: Duration(seconds: 60),
@@ -142,13 +143,13 @@ class OwnerAuthController extends GetxController {
               'smartStaion': smartStation.toJson(),
               'upiId': upiId
             });
-            Get.to(() => OHomePage());
+            Get.to(() => OwnerHomePage());
 
             FirebaseFirestore.instance
                 .collection('smartStations')
                 .add(smartStation.toJson());
-            
-            Get.to(() => OHomePage());
+
+            Get.to(() => OwnerHomePage());
           },
           codeAutoRetrievalTimeout: (String verificationId) {},
         );
@@ -185,7 +186,7 @@ class OwnerAuthController extends GetxController {
         actions: [
           TextButton(
             onPressed: () {
-              Get.offAll(() => LoginScreen());
+              Get.offAll(() => OwnerLoginScreen());
             },
             child: Text("CANCEL"),
           ),

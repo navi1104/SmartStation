@@ -62,4 +62,4 @@ class MainScreen extends StatelessWidget {
   }
 }
 
-//use mvc architecture with getx.
+
