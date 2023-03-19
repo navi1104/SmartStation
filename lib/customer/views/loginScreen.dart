@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:smart_station/customer/views/signUpScreen.dart';
 
 import '../controllers/custAuthController.dart';
 
-
-class LoginScreen extends StatelessWidget{
+class LoginScreen extends StatelessWidget {
   final AuthController _authController = Get.find();
 
   final TextEditingController _phoneNumberController = TextEditingController();
@@ -35,6 +35,15 @@ class LoginScreen extends StatelessWidget{
               },
               child: Text('Login'),
             ),
+            SizedBox(
+              height: 20,
+            ),
+            GestureDetector(
+              child: Text("Don't have an account? Sign-up"),
+              onTap: () {
+                Get.offAll(() => CustomerSignupScreen());
+              },
+            )
           ],
         ),
       ),

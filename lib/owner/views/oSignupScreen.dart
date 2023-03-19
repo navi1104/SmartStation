@@ -4,6 +4,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:smart_station/owner/models/facilitiesModel.dart';
+import 'package:smart_station/owner/views/oLoginScreen.dart';
 
 import '../controllers/oAuthController.dart';
 
@@ -120,9 +121,11 @@ class _OwnerRegistrationFormState extends State<OwnerRegistrationForm> {
                           ))
                       : SizedBox(
                           height: 0,
-                        )),
+                        )
+                        ),
               ElevatedButton(
                 onPressed: () async {
+
                   LocationPermission permission;
                   permission = await Geolocator.requestPermission();
                   await _getLocation();
@@ -137,6 +140,14 @@ class _OwnerRegistrationFormState extends State<OwnerRegistrationForm> {
                 },
                 child: Text('Register'),
               ),
+              SizedBox(
+                height: 10,
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    Get.offAll(() => OwnerLoginScreen());
+                  },
+                  child: Text("Already have an account? Login"))
             ],
           ),
         ),
@@ -169,7 +180,7 @@ class _OwnerRegistrationFormState extends State<OwnerRegistrationForm> {
           double.parse(_latitudeController.text),
           double.parse(_longitudeController.text));
       _locationController.text =
-          "${placemarks[0].subLocality}, ${placemarks[0].locality}:${placemarks[0].postalCode}";
+          "${placemarks[0].subLocality}, ${placemarks[0].locality}-${placemarks[0].postalCode}";
     } catch (e) {
       Get.snackbar("Error", e.toString());
       print(e);
@@ -196,7 +207,7 @@ class _OwnerRegistrationFormState extends State<OwnerRegistrationForm> {
 
       _authController.signUp(
           _nameController.text,
-          _phoneNumberController.text,
+          "+91${_phoneNumberController.text}",
           _latitudeController.text,
           _longitudeController.text,
           facilities,

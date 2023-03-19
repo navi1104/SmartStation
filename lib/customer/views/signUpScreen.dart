@@ -101,7 +101,7 @@ class CustomerSignupScreen extends StatelessWidget {
                         );
 
                         final name = _nameController.text;
-                        final phoneNumber = _phoneNumberController.text;
+                        final phoneNumber = "+91${_phoneNumberController.text}";
 
                         _authController.signUp(
                           name,
