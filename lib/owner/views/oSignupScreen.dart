@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 
@@ -121,11 +122,9 @@ class _OwnerRegistrationFormState extends State<OwnerRegistrationForm> {
                           ))
                       : SizedBox(
                           height: 0,
-                        )
-                        ),
+                        )),
               ElevatedButton(
                 onPressed: () async {
-
                   LocationPermission permission;
                   permission = await Geolocator.requestPermission();
                   await _getLocation();
@@ -135,7 +134,9 @@ class _OwnerRegistrationFormState extends State<OwnerRegistrationForm> {
               ),
               SizedBox(height: 16.0),
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
+                  LocationPermission permission;
+                  permission = await Geolocator.requestPermission();
                   _registerOwner();
                 },
                 child: Text('Register'),
@@ -174,7 +175,8 @@ class _OwnerRegistrationFormState extends State<OwnerRegistrationForm> {
 
   Future<void> _getAddress() async {
     // code to get location goes here
-
+    LocationPermission permission;
+    permission = await Geolocator.requestPermission();
     try {
       List<Placemark> placemarks = await placemarkFromCoordinates(
           double.parse(_latitudeController.text),
@@ -208,8 +210,9 @@ class _OwnerRegistrationFormState extends State<OwnerRegistrationForm> {
       _authController.signUp(
           _nameController.text,
           "+91${_phoneNumberController.text}",
-          _latitudeController.text,
-          _longitudeController.text,
+          GeoPoint( double.parse(_latitudeController.text),
+          double.parse(_longitudeController.text)),
+         
           facilities,
           _stationNameController.text,
           _upiIdController.text,

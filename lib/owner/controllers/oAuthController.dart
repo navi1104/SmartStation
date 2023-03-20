@@ -92,12 +92,12 @@ class OwnerAuthController extends GetxController {
   Future<void> signUp(
       String name,
       String phoneNumber,
-      String latitude,
-      String longitude,
+      GeoPoint location,
+     
       Facilities facilities,
       String stationName,
       String upiId,
-      String location) async {
+      String address) async {
     final QuerySnapshot result = await FirebaseFirestore.instance
         .collection('owners')
         .where('phoneNumber', isEqualTo: phoneNumber)
@@ -129,9 +129,9 @@ class OwnerAuthController extends GetxController {
             SmartStation smartStation = SmartStation(
                 name: stationName,
                 ownerId: userCredential.user!.uid,
-                latitude: latitude,
-                longitude: longitude,
                 location: location,
+                
+                address: address,
                 isAvailable: false,
                 facilities: facilities);
             FirebaseFirestore.instance
