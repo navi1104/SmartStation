@@ -17,6 +17,7 @@ class OwnerLoginScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Login'),
+        backgroundColor: Colors.lightGreen,
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -27,8 +28,17 @@ class OwnerLoginScreen extends StatelessWidget {
             TextFormField(
               keyboardType: TextInputType.phone,
               controller: _phoneNumberController,
-              decoration: const InputDecoration(
-                labelText: 'Phone Number',
+              decoration: InputDecoration(
+                border: const OutlineInputBorder(),
+                labelText: 'Parking Price (Rs./hr)',
+                labelStyle: MaterialStateTextStyle.resolveWith(
+                  (states) {
+                    final Color color = states.contains(MaterialState.error)
+                        ? Theme.of(context).colorScheme.error
+                        : Colors.lightGreen;
+                    return TextStyle(color: color, letterSpacing: 1.3);
+                  },
+                ),
               ),
             ),
             const SizedBox(height: 20),
@@ -38,12 +48,16 @@ class OwnerLoginScreen extends StatelessWidget {
                     .loginWithPhone("+91${_phoneNumberController.text}");
               },
               child: const Text('Login'),
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.lightGreen,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0))),
             ),
             const SizedBox(
               height: 20,
             ),
             GestureDetector(
-              child: Text("Don't have an account? Sign-up"),
+              child: Center(child: Text("Don't have an account? Sign-up")),
               onTap: () {
                 Get.offAll(() => OwnerRegistrationForm());
               },

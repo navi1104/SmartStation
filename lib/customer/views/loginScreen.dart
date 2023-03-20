@@ -15,6 +15,7 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Login'),
+        backgroundColor: Colors.orange,
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -25,7 +26,16 @@ class LoginScreen extends StatelessWidget {
             TextFormField(
               controller: _phoneNumberController,
               decoration: InputDecoration(
+                border: const OutlineInputBorder(),
                 labelText: 'Phone Number',
+                labelStyle: MaterialStateTextStyle.resolveWith(
+                  (states) {
+                    final Color color = states.contains(MaterialState.error)
+                        ? Theme.of(context).colorScheme.error
+                        : Colors.orange;
+                    return TextStyle(color: color, letterSpacing: 1.3);
+                  },
+                ),
               ),
             ),
             SizedBox(height: 20),
@@ -33,7 +43,14 @@ class LoginScreen extends StatelessWidget {
               onPressed: () {
                 _authController.loginWithPhone(_phoneNumberController.text);
               },
-              child: Text('Login'),
+              child: Text(
+                'Login',
+                style: TextStyle(fontSize: 20),
+              ),
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.orange,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0))),
             ),
             SizedBox(
               height: 20,

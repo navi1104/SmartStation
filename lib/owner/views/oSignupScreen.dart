@@ -43,6 +43,7 @@ class _OwnerRegistrationFormState extends State<OwnerRegistrationForm> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Owner Registration'),
+        backgroundColor: Colors.lightGreen,
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
@@ -50,53 +51,149 @@ class _OwnerRegistrationFormState extends State<OwnerRegistrationForm> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              SizedBox(
+                height: 5.0,
+              ),
               TextFormField(
                 controller: _nameController,
                 decoration: InputDecoration(
+                  border: const OutlineInputBorder(),
                   labelText: 'Name',
+                  labelStyle: MaterialStateTextStyle.resolveWith(
+                    (states) {
+                      final Color color = states.contains(MaterialState.error)
+                          ? Theme.of(context).colorScheme.error
+                          : Colors.lightGreen;
+                      return TextStyle(color: color, letterSpacing: 1.3);
+                    },
+                  ),
                 ),
+              ),
+              SizedBox(
+                height: 10.0,
               ),
               TextFormField(
                 controller: _phoneNumberController,
                 decoration: InputDecoration(
+                  border: const OutlineInputBorder(),
                   labelText: 'Phone Number',
+                  labelStyle: MaterialStateTextStyle.resolveWith(
+                    (states) {
+                      final Color color = states.contains(MaterialState.error)
+                          ? Theme.of(context).colorScheme.error
+                          : Colors.lightGreen;
+                      return TextStyle(color: color, letterSpacing: 1.3);
+                    },
+                  ),
                 ),
                 keyboardType: TextInputType.phone,
+              ),
+              SizedBox(
+                height: 10.0,
               ),
               TextFormField(
                 controller: _upiIdController,
                 decoration: InputDecoration(
+                  border: const OutlineInputBorder(),
                   labelText: 'UPI ID',
+                  labelStyle: MaterialStateTextStyle.resolveWith(
+                    (states) {
+                      final Color color = states.contains(MaterialState.error)
+                          ? Theme.of(context).colorScheme.error
+                          : Colors.lightGreen;
+                      return TextStyle(color: color, letterSpacing: 1.3);
+                    },
+                  ),
                 ),
+              ),
+              SizedBox(
+                height: 10.0,
               ),
               TextFormField(
                 controller: _stationNameController,
                 decoration: InputDecoration(
+                  border: const OutlineInputBorder(),
                   labelText: 'Smart Station Name',
+                  labelStyle: MaterialStateTextStyle.resolveWith(
+                    (states) {
+                      final Color color = states.contains(MaterialState.error)
+                          ? Theme.of(context).colorScheme.error
+                          : Colors.lightGreen;
+                      return TextStyle(color: color, letterSpacing: 1.3);
+                    },
+                  ),
                 ),
+              ),
+              SizedBox(
+                height: 10.0,
               ),
               TextFormField(
                 controller: _latitudeController,
                 decoration: InputDecoration(
+                  border: const OutlineInputBorder(),
                   labelText: 'Latitude',
+                  labelStyle: MaterialStateTextStyle.resolveWith(
+                    (states) {
+                      final Color color = states.contains(MaterialState.error)
+                          ? Theme.of(context).colorScheme.error
+                          : Colors.lightGreen;
+                      return TextStyle(color: color, letterSpacing: 1.3);
+                    },
+                  ),
                 ),
+              ),
+              SizedBox(
+                height: 10.0,
               ),
               TextFormField(
                 controller: _longitudeController,
                 decoration: InputDecoration(
+                  border: const OutlineInputBorder(),
                   labelText: 'Longitude',
+                  labelStyle: MaterialStateTextStyle.resolveWith(
+                    (states) {
+                      final Color color = states.contains(MaterialState.error)
+                          ? Theme.of(context).colorScheme.error
+                          : Colors.lightGreen;
+                      return TextStyle(color: color, letterSpacing: 1.3);
+                    },
+                  ),
                 ),
+              ),
+              SizedBox(
+                height: 10.0,
               ),
               TextFormField(
                 controller: _locationController,
                 decoration: InputDecoration(
+                  border: const OutlineInputBorder(),
                   labelText: 'Location',
+                  labelStyle: MaterialStateTextStyle.resolveWith(
+                    (states) {
+                      final Color color = states.contains(MaterialState.error)
+                          ? Theme.of(context).colorScheme.error
+                          : Colors.lightGreen;
+                      return TextStyle(color: color, letterSpacing: 1.3);
+                    },
+                  ),
                 ),
+              ),
+              SizedBox(
+                height: 10.0,
               ),
               TextFormField(
                 controller: _parkingPriceController,
                 decoration: InputDecoration(
+                  border: const OutlineInputBorder(),
                   labelText: 'Parking Price (Rs./hr)',
+                  labelStyle: MaterialStateTextStyle.resolveWith(
+                    (states) {
+                      final Color color = states.contains(MaterialState.error)
+                          ? Theme.of(context).colorScheme.error
+                          : Colors.lightGreen;
+                      return TextStyle(color: color, letterSpacing: 1.3);
+                    },
+                  ),
                 ),
                 keyboardType: TextInputType.numberWithOptions(decimal: true),
               ),
@@ -131,6 +228,10 @@ class _OwnerRegistrationFormState extends State<OwnerRegistrationForm> {
                   _getAddress();
                 },
                 child: Text('Get Location'),
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.lightGreen,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0))),
               ),
               SizedBox(height: 16.0),
               ElevatedButton(
@@ -140,15 +241,24 @@ class _OwnerRegistrationFormState extends State<OwnerRegistrationForm> {
                   _registerOwner();
                 },
                 child: Text('Register'),
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.lightGreen,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0))),
               ),
               SizedBox(
                 height: 10,
               ),
               ElevatedButton(
-                  onPressed: () {
-                    Get.offAll(() => OwnerLoginScreen());
-                  },
-                  child: Text("Already have an account? Login"))
+                onPressed: () {
+                  Get.offAll(() => OwnerLoginScreen());
+                },
+                child: Text("Already have an account? Login"),
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.lightGreen,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0))),
+              )
             ],
           ),
         ),
@@ -210,9 +320,8 @@ class _OwnerRegistrationFormState extends State<OwnerRegistrationForm> {
       _authController.signUp(
           _nameController.text,
           "+91${_phoneNumberController.text}",
-          GeoPoint( double.parse(_latitudeController.text),
-          double.parse(_longitudeController.text)),
-         
+          GeoPoint(double.parse(_latitudeController.text),
+              double.parse(_longitudeController.text)),
           facilities,
           _stationNameController.text,
           _upiIdController.text,

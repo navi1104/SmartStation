@@ -22,15 +22,29 @@ class CustomerSignupScreen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: Text('Customer Signup'),
+          backgroundColor: Colors.orange,
         ),
         body: Padding(
             padding: EdgeInsets.all(16),
             child: Form(
                 key: _formKey,
                 child: ListView(children: [
+                  SizedBox(height: 10.0),
                   TextFormField(
                     controller: _nameController,
-                    decoration: InputDecoration(labelText: 'Name'),
+                    decoration: InputDecoration(
+                      border: const OutlineInputBorder(),
+                      labelText: 'Name',
+                      labelStyle: MaterialStateTextStyle.resolveWith(
+                        (states) {
+                          final Color color =
+                              states.contains(MaterialState.error)
+                                  ? Theme.of(context).colorScheme.error
+                                  : Colors.orange;
+                          return TextStyle(color: color, letterSpacing: 1.3);
+                        },
+                      ),
+                    ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your name';
@@ -38,9 +52,22 @@ class CustomerSignupScreen extends StatelessWidget {
                       return null;
                     },
                   ),
+                  SizedBox(height: 10.0),
                   TextFormField(
                     controller: _phoneNumberController,
-                    decoration: InputDecoration(labelText: 'Phone Number'),
+                    decoration: InputDecoration(
+                      border: const OutlineInputBorder(),
+                      labelText: 'Phone Number',
+                      labelStyle: MaterialStateTextStyle.resolveWith(
+                        (states) {
+                          final Color color =
+                              states.contains(MaterialState.error)
+                                  ? Theme.of(context).colorScheme.error
+                                  : Colors.orange;
+                          return TextStyle(color: color, letterSpacing: 1.3);
+                        },
+                      ),
+                    ),
                     keyboardType: TextInputType.phone,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -49,9 +76,22 @@ class CustomerSignupScreen extends StatelessWidget {
                       return null;
                     },
                   ),
+                  SizedBox(height: 10.0),
                   TextFormField(
                     controller: _vehicleNameController,
-                    decoration: InputDecoration(labelText: 'Vehicle Name'),
+                    decoration: InputDecoration(
+                      border: const OutlineInputBorder(),
+                      labelText: 'Vehicle Name',
+                      labelStyle: MaterialStateTextStyle.resolveWith(
+                        (states) {
+                          final Color color =
+                              states.contains(MaterialState.error)
+                                  ? Theme.of(context).colorScheme.error
+                                  : Colors.orange;
+                          return TextStyle(color: color, letterSpacing: 1.3);
+                        },
+                      ),
+                    ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your vehicle name';
@@ -59,9 +99,22 @@ class CustomerSignupScreen extends StatelessWidget {
                       return null;
                     },
                   ),
+                  SizedBox(height: 10.0),
                   TextFormField(
                     controller: _licensePlateController,
-                    decoration: InputDecoration(labelText: 'License Plate'),
+                    decoration: InputDecoration(
+                      border: const OutlineInputBorder(),
+                      labelText: 'License Plate',
+                      labelStyle: MaterialStateTextStyle.resolveWith(
+                        (states) {
+                          final Color color =
+                              states.contains(MaterialState.error)
+                                  ? Theme.of(context).colorScheme.error
+                                  : Colors.orange;
+                          return TextStyle(color: color, letterSpacing: 1.3);
+                        },
+                      ),
+                    ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your license plate number';
@@ -69,9 +122,22 @@ class CustomerSignupScreen extends StatelessWidget {
                       return null;
                     },
                   ),
+                  SizedBox(height: 10.0),
                   TextFormField(
                     controller: _vehicleTypeController,
-                    decoration: InputDecoration(labelText: 'Vehicle Type'),
+                    decoration: InputDecoration(
+                      border: const OutlineInputBorder(),
+                      labelText: 'Vehicle Type',
+                      labelStyle: MaterialStateTextStyle.resolveWith(
+                        (states) {
+                          final Color color =
+                              states.contains(MaterialState.error)
+                                  ? Theme.of(context).colorScheme.error
+                                  : Colors.orange;
+                          return TextStyle(color: color, letterSpacing: 1.3);
+                        },
+                      ),
+                    ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your vehicle type';
@@ -79,9 +145,22 @@ class CustomerSignupScreen extends StatelessWidget {
                       return null;
                     },
                   ),
+                  SizedBox(height: 10.0),
                   TextFormField(
                     controller: _vehicleSubTypeController,
-                    decoration: InputDecoration(labelText: 'Vehicle Sub-Type'),
+                    decoration: InputDecoration(
+                      border: const OutlineInputBorder(),
+                      labelText: 'Vehicle Sub-Type',
+                      labelStyle: MaterialStateTextStyle.resolveWith(
+                        (states) {
+                          final Color color =
+                              states.contains(MaterialState.error)
+                                  ? Theme.of(context).colorScheme.error
+                                  : Colors.orange;
+                          return TextStyle(color: color, letterSpacing: 1.3);
+                        },
+                      ),
+                    ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your vehicle sub-type';
@@ -110,7 +189,14 @@ class CustomerSignupScreen extends StatelessWidget {
                         );
                       }
                     },
-                    child: Text('Sign Up'),
+                    child: Text(
+                      'Sign Up',
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.orange,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0))),
                   ),
                   SizedBox(height: 16),
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
