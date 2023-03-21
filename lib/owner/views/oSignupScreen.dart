@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:smart_station/owner/models/facilitiesModel.dart';
 import 'package:smart_station/owner/views/oLoginScreen.dart';
 
+import '../controllers/homeTabController.dart';
 import '../controllers/oAuthController.dart';
 
 class OwnerRegistrationForm extends StatefulWidget {
@@ -238,6 +239,7 @@ class _OwnerRegistrationFormState extends State<OwnerRegistrationForm> {
                 onPressed: () async {
                   LocationPermission permission;
                   permission = await Geolocator.requestPermission();
+
                   _registerOwner();
                 },
                 child: Text('Register'),
@@ -300,6 +302,7 @@ class _OwnerRegistrationFormState extends State<OwnerRegistrationForm> {
   }
 
   Future<void> _registerOwner() async {
+    Get.put(HomeTabController());
     if (_nameController.text.isEmpty ||
         _phoneNumberController.text.isEmpty ||
         _upiIdController.text.isEmpty ||

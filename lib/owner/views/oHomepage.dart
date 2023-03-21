@@ -1,5 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:smart_station/owner/controllers/homeTabController.dart';
+import 'package:smart_station/owner/controllers/oAuthController.dart';
+
+import 'homeTab.dart';
 
 class OwnerHomePage extends StatefulWidget {
   const OwnerHomePage({Key? key}) : super(key: key);
@@ -11,7 +16,7 @@ class OwnerHomePage extends StatefulWidget {
 class _OwnerHomePageState extends State<OwnerHomePage> {
   int _selectedIndex = 0;
 
-  static const List<Widget> _widgetOptions = <Widget>[
+  static List<Widget> _widgetOptions = <Widget>[
     HomeTab(),
     RequestsTab(),
     PaymentsReceivedTab(),
@@ -76,20 +81,6 @@ class _OwnerHomePageState extends State<OwnerHomePage> {
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.blue,
         onTap: _onItemTapped,
-      ),
-    );
-  }
-}
-
-class HomeTab extends StatelessWidget {
-  const HomeTab({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        'Home Tab',
-        style: TextStyle(fontSize: 30),
       ),
     );
   }

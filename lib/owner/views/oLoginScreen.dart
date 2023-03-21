@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:smart_station/owner/controllers/homeTabController.dart';
 import 'package:smart_station/owner/views/oSignupScreen.dart';
 
 import '../controllers/oAuthController.dart';
@@ -44,6 +45,7 @@ class OwnerLoginScreen extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
+                Get.put(HomeTabController());
                 _authController
                     .loginWithPhone("+91${_phoneNumberController.text}");
               },

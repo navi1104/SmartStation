@@ -1,26 +1,24 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:smart_station/customer/controllers/custAuthController.dart';
+import 'package:smart_station/owner/controllers/oAuthController.dart';
 
 import '../models/ownerModel.dart';
 
-AuthController authController = Get.find();
+OwnerAuthController authController = Get.find();
+var ownerData = {}.obs; // Move the initialization of `ownerData` here
 
 class HomeTabController extends GetxController {
-  Future<Owner?> fetchOwner(String uid) async {
-    try {
-      DocumentSnapshot<Map<String, dynamic>> snapshot =
-          await FirebaseFirestore.instance.collection('owners').doc(uid).get();
-      if (snapshot.exists) {
-        Owner owner = Owner.fromJson(snapshot as Map<String, dynamic>);
-        return owner;
-      } else {
-        print('Document does not exist');
-      }
-    } catch (e) {
-      print('Error fetching document: $e');
-      return null;
+  Future<void> getOwner() async {
+    var docSnapshot = await FirebaseFirestore.instance
+        .collection('owners')
+        .doc('${authController.firebaseUser.value!.uid}')
+        .get();
+
+    print('${docSnapshot.data()}');
+    if (docSnapshot.exists) {
+      ownerData.value = docSnapshot.data() ??
+          {}; // Update the observable Map with the document data
     }
   }
 }

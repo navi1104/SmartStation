@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
 import 'package:smart_station/customer/views/loginScreen.dart';
 import 'package:smart_station/main.dart';
+import 'package:smart_station/owner/controllers/homeTabController.dart';
 import 'package:smart_station/owner/models/facilitiesModel.dart';
 import 'package:smart_station/owner/models/smartStationModel.dart';
 
@@ -26,6 +27,7 @@ class OwnerAuthController extends GetxController {
 
   _setInitialScreen(User? user) {
     if (user != null) {
+      Get.put(HomeTabController());
       Get.offAll(() => OwnerHomePage());
     } else {
       Get.offAll(() => MainScreen());
@@ -93,7 +95,6 @@ class OwnerAuthController extends GetxController {
       String name,
       String phoneNumber,
       GeoPoint location,
-     
       Facilities facilities,
       String stationName,
       String upiId,
@@ -130,7 +131,6 @@ class OwnerAuthController extends GetxController {
                 name: stationName,
                 ownerId: userCredential.user!.uid,
                 location: location,
-                
                 address: address,
                 isAvailable: false,
                 facilities: facilities);
