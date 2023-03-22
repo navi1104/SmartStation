@@ -35,6 +35,8 @@ class _OwnerHomePageState extends State<OwnerHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Owner Home'),
+        backgroundColor: Colors.lightGreen,
+        elevation: 0,
       ),
       drawer: Drawer(
         child: ListView(

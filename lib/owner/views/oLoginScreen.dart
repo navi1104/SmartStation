@@ -31,7 +31,7 @@ class OwnerLoginScreen extends StatelessWidget {
               controller: _phoneNumberController,
               decoration: InputDecoration(
                 border: const OutlineInputBorder(),
-                labelText: 'Parking Price (Rs./hr)',
+                labelText: 'Phone Number',
                 labelStyle: MaterialStateTextStyle.resolveWith(
                   (states) {
                     final Color color = states.contains(MaterialState.error)
@@ -53,7 +53,7 @@ class OwnerLoginScreen extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.lightGreen,
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0))),
+                      borderRadius: BorderRadius.circular(20.0))),
             ),
             const SizedBox(
               height: 20,
