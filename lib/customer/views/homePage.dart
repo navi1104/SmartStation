@@ -19,7 +19,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   bool mapToggle = false;
   bool friendsToogle = false;
-
+  double distance = 0.0;
   Position? currentLocation;
 
   var friends = [];
@@ -66,11 +66,21 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  initMarker(friends) {
+  initMarker(friends) async {
     LatLng position = LatLng(
       friends['smartStation']['location'].latitude,
       friends['smartStation']['location'].longitude,
     );
+
+    double distanceInMeters = await Geolocator.distanceBetween(
+      currentLocation!.latitude,
+      currentLocation!.longitude,
+      friends['smartStation']['location'].latitude,
+      friends['smartStation']['location'].longitude,
+    );
+    double distanceInKm = distanceInMeters / 1000;
+    double roundedDistance = double.parse(distanceInKm.toStringAsFixed(2));
+    distance = roundedDistance;
 
     _markers.add(
       Marker(
@@ -119,7 +129,15 @@ class _HomePageState extends State<HomePage> {
 //   _markers = Set.of(_markers);
 // }
 
-  Widget friendsCard(friends) {
+  Widget friendsCard(Map<String, dynamic> friends) {
+    double distanceInMeters = Geolocator.distanceBetween(
+      currentLocation!.latitude,
+      currentLocation!.longitude,
+      friends['smartStation']['location'].latitude,
+      friends['smartStation']['location'].longitude,
+    );
+    double distanceInKm = distanceInMeters / 1000;
+
     return Padding(
       padding: EdgeInsets.only(left: 2.0, bottom: 0.0, top: 0.0, right: 5.0),
       child: InkWell(
@@ -143,13 +161,14 @@ class _HomePageState extends State<HomePage> {
             borderRadius: BorderRadius.circular(5.0),
             child: Container(
               height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width - 60.0,
+              width: MediaQuery.of(context).size.width - 50.0,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(25.0),
                 color: Colors.white,
               ),
               child: Padding(
-                padding: const EdgeInsets.only(left: 20.0, top: 15.0),
+                padding:
+                    const EdgeInsets.only(left: 20.0, top: 15.0, right: 10.0),
                 child: Column(
                   //mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -170,6 +189,7 @@ class _HomePageState extends State<HomePage> {
                                       color: Colors.green,
                                       fontWeight: FontWeight.bold),
                                 ),
+                                //Text("${distanceInKm.toStringAsFixed(2)} km"),
                                 SizedBox(width: 10),
                                 Icon(
                                   Icons.star,
@@ -182,6 +202,16 @@ class _HomePageState extends State<HomePage> {
                                 Icon(
                                   Icons.star,
                                   color: Colors.amber,
+                                ),
+                                SizedBox(
+                                  width: 20,
+                                ),
+                                Text(
+                                  "${distanceInKm.toStringAsFixed(1)} km",
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                                 ),
                               ],
                             ),
