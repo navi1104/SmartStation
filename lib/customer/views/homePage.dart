@@ -159,161 +159,164 @@ class _HomePageState extends State<HomePage> {
           child: Material(
             elevation: 10.0,
             borderRadius: BorderRadius.circular(5.0),
-            child: Container(
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width - 50.0,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25.0),
-                color: Colors.white,
-              ),
-              child: Padding(
-                padding:
-                    const EdgeInsets.only(left: 20.0, top: 15.0, right: 10.0),
-                child: Column(
-                  //mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "${friends['smartStation']['name'].split(' ')[0]}",
-                                  style: TextStyle(
-                                      fontSize: 25,
-                                      color: Colors.green,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                //Text("${distanceInKm.toStringAsFixed(2)} km"),
-                                SizedBox(width: 10),
-                                Icon(
-                                  Icons.star,
-                                  color: Colors.amber,
-                                ),
-                                Icon(
-                                  Icons.star,
-                                  color: Colors.amber,
-                                ),
-                                Icon(
-                                  Icons.star,
-                                  color: Colors.amber,
-                                ),
-                                SizedBox(
-                                  width: 20,
-                                ),
-                                Text(
-                                  "${distanceInKm.toStringAsFixed(1)} km",
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w500,
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Container(
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width - 50.0,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(25.0),
+                  color: Colors.white,
+                ),
+                child: Padding(
+                  padding:
+                      const EdgeInsets.only(left: 20.0, top: 15.0, right: 10.0),
+                  child: Column(
+                    //mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "${friends['smartStation']['name'].split(' ')[0]}",
+                                    style: TextStyle(
+                                        fontSize: 25,
+                                        color: Colors.green,
+                                        fontWeight: FontWeight.bold),
                                   ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 25.0),
-                            Row(
-                              children: [
-                                Text(
-                                  "${friends['phoneNumber']}",
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w300),
-                                ),
-                                SizedBox(width: 50.0),
-                                Icon(
-                                  Icons.ev_station,
-                                  color: Colors.green,
-                                  size: 30,
-                                ),
-                                SizedBox(
-                                  width: 3.0,
-                                ),
-                                Text(
-                                  "${friends['smartStation']['facilities']['chargingPrice']}",
-                                  style: TextStyle(
+                                  //Text("${distanceInKm.toStringAsFixed(2)} km"),
+                                  SizedBox(width: 10),
+                                  Icon(
+                                    Icons.star,
+                                    color: Colors.amber,
+                                  ),
+                                  Icon(
+                                    Icons.star,
+                                    color: Colors.amber,
+                                  ),
+                                  Icon(
+                                    Icons.star,
+                                    color: Colors.amber,
+                                  ),
+                                  SizedBox(
+                                    width: 20,
+                                  ),
+                                  Text(
+                                    "${distanceInKm.toStringAsFixed(1)} km",
+                                    style: TextStyle(
                                       fontSize: 20,
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 5.0),
-                            Row(
-                              // mainAxisAlignment: MainAxisAlignment.center,
-                              //crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "${friends['smartStation']['address'].split(' ')[0].replaceAll(',', '')}",
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                SizedBox(width: 50.0),
-                                Icon(
-                                  Icons.local_parking,
-                                  color: Colors.redAccent,
-                                  size: 30,
-                                ),
-                                SizedBox(
-                                  width: 3.0,
-                                ),
-                                Text(
-                                  "${friends['smartStation']['facilities']['parkingPrice']}",
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 10.0),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        ElevatedButton(
-                          onPressed: () {
-                            //_showBottomSheet(context);
-                            launch(
-                                'https://www.google.com/maps/dir/?api=1&destination=${friends['smartStation']['location'].latitude},${friends['smartStation']['location'].longitude}&travelmode=driving');
-                          },
-                          child: Text('Book'),
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.blue,
-                            onPrimary: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 25.0),
+                              Row(
+                                children: [
+                                  Text(
+                                    "${friends['phoneNumber']}",
+                                    style: TextStyle(
+                                        fontSize: 15,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w300),
+                                  ),
+                                  SizedBox(width: 50.0),
+                                  Icon(
+                                    Icons.ev_station,
+                                    color: Colors.green,
+                                    size: 30,
+                                  ),
+                                  SizedBox(
+                                    width: 3.0,
+                                  ),
+                                  Text(
+                                    "${friends['smartStation']['facilities']['chargingPrice']}",
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 5.0),
+                              Row(
+                                // mainAxisAlignment: MainAxisAlignment.center,
+                                //crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "${friends['smartStation']['address'].replaceAll(new RegExp(r'\b\d{6}\b'), '').replaceAll(', Chennai', '').replaceAll(RegExp(r', Chennai \d{6}$|-'), '')}",
+                                    style: TextStyle(
+                                        fontSize: 15,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                  SizedBox(width: 50.0),
+                                  Icon(
+                                    Icons.local_parking,
+                                    color: Colors.redAccent,
+                                    size: 30,
+                                  ),
+                                  SizedBox(
+                                    width: 3.0,
+                                  ),
+                                  Text(
+                                    "${friends['smartStation']['facilities']['parkingPrice']}",
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 10.0),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {
+                              //_showBottomSheet(context);
+                              launch(
+                                  'https://www.google.com/maps/dir/?api=1&destination=${friends['smartStation']['location'].latitude},${friends['smartStation']['location'].longitude}&travelmode=driving');
+                            },
+                            child: Text('Book'),
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.blue,
+                              onPrimary: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
                             ),
                           ),
-                        ),
-                        ElevatedButton(
-                          onPressed: () {
-                            //_showBottomSheet(context);
-                            launch(
-                                'https://www.google.com/maps/dir/?api=1&destination=${friends['smartStation']['location'].latitude},${friends['smartStation']['location'].longitude}&travelmode=driving');
-                          },
-                          child: Text('Navigate Now'),
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.green,
-                            onPrimary: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(25),
+                          ElevatedButton(
+                            onPressed: () {
+                              //_showBottomSheet(context);
+                              launch(
+                                  'https://www.google.com/maps/dir/?api=1&destination=${friends['smartStation']['location'].latitude},${friends['smartStation']['location'].longitude}&travelmode=driving');
+                            },
+                            child: Text('Navigate Now'),
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.green,
+                              onPrimary: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(25),
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -438,29 +441,34 @@ class _HomePageState extends State<HomePage> {
                           ),
                   ),
                   Positioned(
-                      top: MediaQuery.of(context).size.height - 220,
+                      top: MediaQuery.of(context).size.height - 230,
                       left: 10.0,
-                      child: Container(
-                        height: 220.0,
-                        width: MediaQuery.of(context).size.width,
-                        child: friendsToogle
-                            ? ListView(
-                                scrollDirection: Axis.horizontal,
-                                padding: EdgeInsets.all(8.0),
-                                children: friends.map((elements) {
-                                  return Row(
-                                    children: [
-                                      friendsCard(elements),
-                                      SizedBox(
-                                          width: 10.0), // add some space here
-                                    ],
-                                  );
-                                }).toList(),
-                              )
-                            : Container(
-                                height: 1.0,
-                                width: 1.0,
-                              ),
+                      right: 10.0,
+                      bottom: MediaQuery.of(context).size.height - 790,
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.vertical,
+                        child: Container(
+                          height: MediaQuery.of(context).size.height,
+                          width: MediaQuery.of(context).size.width - 50,
+                          child: friendsToogle
+                              ? ListView(
+                                  scrollDirection: Axis.horizontal,
+                                  padding: EdgeInsets.all(8.0),
+                                  children: friends.map((elements) {
+                                    return Row(
+                                      children: [
+                                        friendsCard(elements),
+                                        SizedBox(
+                                            width: 10.0), // add some space here
+                                      ],
+                                    );
+                                  }).toList(),
+                                )
+                              : Container(
+                                  height: 1.0,
+                                  width: 1.0,
+                                ),
+                        ),
                       ))
                 ],
               ),
