@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:smart_station/customer/controllers/custAuthController.dart';
+import 'package:smart_station/customer/views/homePage.dart';
 import 'package:smart_station/owner/controllers/oAuthController.dart';
 import 'package:smart_station/owner/views/oSignupScreen.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
@@ -78,7 +79,7 @@ class MainScreen extends StatelessWidget {
                 child: ElevatedButton(
                     onPressed: () {
                       Get.put(AuthController());
-                      Get.to(() => CustomerSignupScreen());
+                      Get.to(() => HomePage());
                     },
                     child: Text(
                       'Customer',
