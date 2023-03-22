@@ -6,6 +6,8 @@ import 'package:smart_station/owner/controllers/oAuthController.dart';
 
 import 'homeTab.dart';
 
+OwnerAuthController _ownerAuthController = Get.find();
+
 class OwnerHomePage extends StatefulWidget {
   const OwnerHomePage({Key? key}) : super(key: key);
 
@@ -54,7 +56,7 @@ class _OwnerHomePageState extends State<OwnerHomePage> {
               leading: Icon(Icons.exit_to_app),
               title: Text('Sign out'),
               onTap: () {
-                // Implement sign out logic here
+                _ownerAuthController.signOut();
               },
             ),
           ],

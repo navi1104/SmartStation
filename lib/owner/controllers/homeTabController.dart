@@ -21,4 +21,50 @@ class HomeTabController extends GetxController {
           {}; // Update the observable Map with the document data
     }
   }
+
+  void updateParkingPrice(double newPrice) {
+    if (ownerData['smartStation']['facilities']['parkingPrice'] != null) {
+      ownerData['smartStation']!['facilities']!['parkingPrice'] = newPrice;
+      FirebaseFirestore.instance
+          .collection('owners')
+          .doc(authController.firebaseUser.value!.uid)
+          .update({'smartStation.facilities.parkingPrice': newPrice});
+    }
+  }
+
+  void updateChargingPrice(double newPrice) {
+    if (ownerData['smartStation']['facilities']['chargingPrice'] != null) {
+      ownerData['smartStation']!['facilities']!['chargingPrice'] = newPrice;
+      FirebaseFirestore.instance
+          .collection('owners')
+          .doc(authController.firebaseUser.value!.uid)
+          .update({'smartStation.facilities.chargingPrice': newPrice});
+    }
+  }
+
+  void updateChargingSatus() {
+    ownerData["smartStation"]["facilities"].update(
+        "chargingAvailable",
+        (value) =>
+            !ownerData["smartStation"]["facilities"]["chargingAvailable"]);
+    FirebaseFirestore.instance
+        .collection('owners')
+        .doc(authController.firebaseUser.value!.uid)
+        .update({
+      'smartStation.facilities.chargingAvailable':
+          ownerData["smartStation"]["facilities"]["chargingAvailable"] ?? false
+    });
+  }
+
+  void updateSmartStationAvailability() {
+    ownerData["smartStation"].update(
+        "isAvailable", (value) => !ownerData["smartStation"]["isAvailable"]);
+    FirebaseFirestore.instance
+        .collection('owners')
+        .doc(authController.firebaseUser.value!.uid)
+        .update({
+      'smartStation.isAvailable':
+          ownerData["smartStation"]["isAvailable"] ?? false
+    });
+  }
 }

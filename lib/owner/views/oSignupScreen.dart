@@ -237,9 +237,6 @@ class _OwnerRegistrationFormState extends State<OwnerRegistrationForm> {
               SizedBox(height: 16.0),
               ElevatedButton(
                 onPressed: () async {
-                  LocationPermission permission;
-                  permission = await Geolocator.requestPermission();
-
                   _registerOwner();
                 },
                 child: Text('Register'),
@@ -270,8 +267,7 @@ class _OwnerRegistrationFormState extends State<OwnerRegistrationForm> {
 
   Future<void> _getLocation() async {
     // code to get location goes here
-    LocationPermission permission;
-    permission = await Geolocator.requestPermission();
+
     try {
       Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high,
@@ -287,8 +283,7 @@ class _OwnerRegistrationFormState extends State<OwnerRegistrationForm> {
 
   Future<void> _getAddress() async {
     // code to get location goes here
-    LocationPermission permission;
-    permission = await Geolocator.requestPermission();
+
     try {
       List<Placemark> placemarks = await placemarkFromCoordinates(
           double.parse(_latitudeController.text),

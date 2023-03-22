@@ -140,7 +140,7 @@ class OwnerAuthController extends GetxController {
                 .set({
               'name': name,
               'phoneNumber': phoneNumber,
-              'smartStaion': smartStation.toJson(),
+              'smartStation': smartStation.toJson(),
               'upiId': upiId
             });
             Get.to(() => OwnerHomePage());
