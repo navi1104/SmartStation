@@ -170,64 +170,67 @@ class _HomePageState extends State<HomePage> {
                 ),
                 child: Padding(
                   padding:
-                      const EdgeInsets.only(left: 20.0, top: 15.0, right: 10.0),
+                      const EdgeInsets.only(left: 20.0, top: 15.0, right: 20.0),
                   child: Column(
                     //mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Row(
+                      Column(
                         mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                          SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "${friends['smartStation']['name'].split(' ')[0]}",
+                                  style: TextStyle(
+                                      fontSize: 25,
+                                      color: Colors.green,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                //Text("${distanceInKm.toStringAsFixed(2)} km"),
+                                SizedBox(width: 10),
+                                Icon(
+                                  Icons.star,
+                                  color: Colors.amber,
+                                ),
+                                Icon(
+                                  Icons.star,
+                                  color: Colors.amber,
+                                ),
+                                Icon(
+                                  Icons.star,
+                                  color: Colors.amber,
+                                ),
+                                SizedBox(
+                                  width: 20,
+                                ),
+                                Text(
+                                  "${distanceInKm.toStringAsFixed(1)} km",
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 25.0),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "${friends['smartStation']['name'].split(' ')[0]}",
-                                    style: TextStyle(
-                                        fontSize: 25,
-                                        color: Colors.green,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  //Text("${distanceInKm.toStringAsFixed(2)} km"),
-                                  SizedBox(width: 10),
-                                  Icon(
-                                    Icons.star,
-                                    color: Colors.amber,
-                                  ),
-                                  Icon(
-                                    Icons.star,
-                                    color: Colors.amber,
-                                  ),
-                                  Icon(
-                                    Icons.star,
-                                    color: Colors.amber,
-                                  ),
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                  Text(
-                                    "${distanceInKm.toStringAsFixed(1)} km",
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ],
+                              Text(
+                                "${friends['phoneNumber']}",
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w300),
                               ),
-                              SizedBox(height: 25.0),
+                              //SizedBox(width: 50.0),
                               Row(
                                 children: [
-                                  Text(
-                                    "${friends['phoneNumber']}",
-                                    style: TextStyle(
-                                        fontSize: 15,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w300),
-                                  ),
-                                  SizedBox(width: 50.0),
                                   Icon(
                                     Icons.ev_station,
                                     color: Colors.green,
@@ -245,19 +248,24 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                 ],
                               ),
-                              SizedBox(height: 5.0),
+                            ],
+                          ),
+                          SizedBox(height: 5.0),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            // mainAxisAlignment: MainAxisAlignment.center,
+                            //crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                "${friends['smartStation']['address'].replaceAll(new RegExp(r'\b\d{6}\b'), '').replaceAll(', Chennai', '').replaceAll(RegExp(r', Chennai \d{6}$|-'), '')}",
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                              //  SizedBox(width: 50.0),
                               Row(
-                                // mainAxisAlignment: MainAxisAlignment.center,
-                                //crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Text(
-                                    "${friends['smartStation']['address'].replaceAll(new RegExp(r'\b\d{6}\b'), '').replaceAll(', Chennai', '').replaceAll(RegExp(r', Chennai \d{6}$|-'), '')}",
-                                    style: TextStyle(
-                                        fontSize: 15,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                  SizedBox(width: 50.0),
                                   Icon(
                                     Icons.local_parking,
                                     color: Colors.redAccent,
