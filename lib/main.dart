@@ -79,7 +79,7 @@ class MainScreen extends StatelessWidget {
                 child: ElevatedButton(
                     onPressed: () {
                       Get.put(AuthController());
-                      Get.to(() => HomePage());
+                      Get.to(() => CustomerSignupScreen());
                     },
                     child: Text(
                       'Customer',
