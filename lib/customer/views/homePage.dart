@@ -159,18 +159,17 @@ class _HomePageState extends State<HomePage> {
           child: Material(
             elevation: 10.0,
             borderRadius: BorderRadius.circular(5.0),
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Container(
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width - 50.0,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(25.0),
-                  color: Colors.white,
-                ),
-                child: Padding(
-                  padding:
-                      const EdgeInsets.only(left: 20.0, top: 15.0, right: 20.0),
+            child: Container(
+              //height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width - 50.0,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(25.0),
+                color: Colors.white,
+              ),
+              child: Padding(
+                padding:
+                    const EdgeInsets.only(left: 20.0, top: 15.0, right: 20.0),
+                child: SingleChildScrollView(
                   child: Column(
                     //mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -181,7 +180,7 @@ class _HomePageState extends State<HomePage> {
                           SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
+                              //mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 Text(
                                   "${friends['smartStation']['name'].split(' ')[0]}",
@@ -452,31 +451,28 @@ class _HomePageState extends State<HomePage> {
                       top: MediaQuery.of(context).size.height - 230,
                       left: 10.0,
                       right: 10.0,
-                      bottom: MediaQuery.of(context).size.height - 790,
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.vertical,
-                        child: Container(
-                          height: MediaQuery.of(context).size.height,
-                          width: MediaQuery.of(context).size.width - 50,
-                          child: friendsToogle
-                              ? ListView(
-                                  scrollDirection: Axis.horizontal,
-                                  padding: EdgeInsets.all(8.0),
-                                  children: friends.map((elements) {
-                                    return Row(
-                                      children: [
-                                        friendsCard(elements),
-                                        SizedBox(
-                                            width: 10.0), // add some space here
-                                      ],
-                                    );
-                                  }).toList(),
-                                )
-                              : Container(
-                                  height: 1.0,
-                                  width: 1.0,
-                                ),
-                        ),
+                      bottom: MediaQuery.of(context).size.height - 850,
+                      child: Container(
+                        height: MediaQuery.of(context).size.height,
+                        width: MediaQuery.of(context).size.width - 50,
+                        child: friendsToogle
+                            ? ListView(
+                                scrollDirection: Axis.horizontal,
+                                padding: EdgeInsets.all(8.0),
+                                children: friends.map((elements) {
+                                  return Row(
+                                    children: [
+                                      friendsCard(elements),
+                                      SizedBox(
+                                          width: 10.0), // add some space here
+                                    ],
+                                  );
+                                }).toList(),
+                              )
+                            : Container(
+                                height: 1.0,
+                                width: 1.0,
+                              ),
                       ))
                 ],
               ),
