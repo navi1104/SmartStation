@@ -39,14 +39,27 @@ class MainScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
+            Image(image: AssetImage('images/image-removebg-preview.png')),
+            Text(
+              'SmartStation',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+            ),
+            SizedBox(
+              height: 30,
+            ),
             AnimatedTextKit(
               animatedTexts: [
                 TyperAnimatedText('WELCOME!',
                     textStyle:
-                        TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                        TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    speed: Duration(
+                      milliseconds: 200,
+                    )),
               ],
               isRepeatingAnimation: true,
-              totalRepeatCount: 2,
+            ),
+            SizedBox(
+              height: 20,
             ),
             Text('HELLO!'),
             Padding(
@@ -62,7 +75,7 @@ class MainScreen extends StatelessWidget {
                     child: Text(
                       'Owner',
                       style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                     ),
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.lightGreen,
@@ -84,7 +97,7 @@ class MainScreen extends StatelessWidget {
                     child: Text(
                       'Customer',
                       style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                     ),
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.orange,
@@ -93,7 +106,7 @@ class MainScreen extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 10.0,
+              height: 50.0,
             )
           ],
         ),

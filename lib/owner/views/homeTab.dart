@@ -69,11 +69,13 @@ class _HomeTabState extends State<HomeTab> {
                         child: Container(
                           padding: EdgeInsets.all(8.0),
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20.0),
-                            color: ownerData["smartStation"]["isAvailable"]
-                                ? Colors.lightGreen
-                                : Colors.red,
-                          ),
+                              borderRadius: BorderRadius.circular(20.0),
+                              color: ownerData["smartStation"]["isAvailable"]
+                                  ? Colors.lightGreen
+                                  : Colors.red,
+                              boxShadow: [
+                                BoxShadow(color: Colors.black, blurRadius: 10.0)
+                              ]),
                           child: Padding(
                             padding: const EdgeInsets.all(16.0),
                             child: Column(
@@ -107,7 +109,7 @@ class _HomeTabState extends State<HomeTab> {
                                 SizedBox(height: 8),
                                 Text(
                                   chargingAvailable
-                                      ? '   Charging Price : $chargingPrice'
+                                      ? '   Charging Price : ₹ $chargingPrice /hr.'
                                       : '   Charging : Not Available',
                                   style: TextStyle(
                                       fontSize: 16,
@@ -116,7 +118,7 @@ class _HomeTabState extends State<HomeTab> {
                                 ),
                                 SizedBox(height: 8),
                                 Text(
-                                  '   Parking Price : ${ownerData["smartStation"]["facilities"]["parkingPrice"]}',
+                                  '   Parking Price : ₹ ${ownerData["smartStation"]["facilities"]["parkingPrice"]} /hr.',
                                   style: TextStyle(
                                       fontSize: 16,
                                       color: Colors.white,
@@ -229,7 +231,7 @@ class _HomeTabState extends State<HomeTab> {
                             });
                           },
                           child: Text(
-                            "Toggle Charger availability",
+                            "Toggle Charger Availability",
                             style: TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.bold),
                           ),
@@ -262,7 +264,7 @@ class _HomeTabState extends State<HomeTab> {
                                               decimal: true),
                                       maxLines: 1,
                                       decoration: InputDecoration(
-                                          labelText: 'New Charging price',
+                                          labelText: 'New Charging Price',
                                           hintMaxLines: 1,
                                           border: OutlineInputBorder(
                                               borderSide: BorderSide(
@@ -304,7 +306,7 @@ class _HomeTabState extends State<HomeTab> {
                                 radius: 10.0);
                           },
                           child: Text(
-                            "Update Charging price",
+                            "Update Charging Price",
                             style: TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.bold),
                           ),
