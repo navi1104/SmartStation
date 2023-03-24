@@ -7,7 +7,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:smart_station/customer/controllers/custAuthController.dart';
+import 'package:smart_station/customer/controllers/requestController.dart';
+import 'package:smart_station/owner/controllers/requestTabController.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import 'bookingPage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -15,6 +20,11 @@ class HomePage extends StatefulWidget {
   @override
   State<HomePage> createState() => _HomePageState();
 }
+
+AuthController _authController = Get.find();
+RequestController _requestController = Get.find();
+String dropdownValue = "Parking";
+String bookStatus = "book";
 
 class _HomePageState extends State<HomePage> {
   bool mapToggle = false;
@@ -60,6 +70,7 @@ class _HomePageState extends State<HomePage> {
       });
       for (int i = 0; i < snapshot.docs.length; i++) {
         friends.add(snapshot.docs[i].data());
+        friends[i]["id"] = snapshot.docs[i].id.toString();
         initMarker(snapshot.docs[i].data());
         print(friends);
       }
@@ -293,12 +304,11 @@ class _HomePageState extends State<HomePage> {
                           ElevatedButton(
                             onPressed: () {
                               //_showBottomSheet(context);
-                              launch(
-                                  'https://www.google.com/maps/dir/?api=1&destination=${friends['smartStation']['location'].latitude},${friends['smartStation']['location'].longitude}&travelmode=driving');
+                              Get.to(() => BookingPage(friends["id"]));
                             },
                             child: Text('Book'),
                             style: ElevatedButton.styleFrom(
-                              primary: Colors.blue,
+                              primary: Colors.orange,
                               onPrimary: Colors.white,
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),
@@ -415,11 +425,19 @@ class _HomePageState extends State<HomePage> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+        floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              _authController.signOut();
+            },
+            child: Icon(Icons.logout)),
         // appBar: AppBar(
         //   title: Text(
-        //     "List of Markers",
-        //     style: TextStyle(fontSize: 28, color: Colors.white),
+        //     "Customer Home Page",
+        //     style: TextStyle(fontSize: 15, color: Colors.white),
         //   ),
+        //   actions: [
+
+        //   ],
         // ),
         body: Column(
           children: [
@@ -448,7 +466,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                   ),
                   Positioned(
-                      top: MediaQuery.of(context).size.height - 230,
+                      top: MediaQuery.of(context).size.height - 250,
                       left: 10.0,
                       right: 10.0,
                       bottom: MediaQuery.of(context).size.height - 850,

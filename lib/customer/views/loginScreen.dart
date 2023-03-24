@@ -41,7 +41,8 @@ class LoginScreen extends StatelessWidget {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                _authController.loginWithPhone(_phoneNumberController.text);
+                _authController
+                    .loginWithPhone("+91${_phoneNumberController.text}");
               },
               child: Text(
                 'Login',

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
+import 'package:smart_station/customer/controllers/requestController.dart';
 import 'package:smart_station/customer/views/loginScreen.dart';
 import 'package:smart_station/main.dart';
 
@@ -24,6 +25,7 @@ class AuthController extends GetxController {
 
   _setInitialScreen(User? user) {
     if (user != null) {
+      Get.put(RequestController());
       Get.offAll(() => HomePage());
     } else {
       Get.offAll(() => MainScreen());
@@ -74,7 +76,7 @@ class AuthController extends GetxController {
                 await _auth.signInWithCredential(credential);
 
             // create customer document in firestore
-
+            Get.put(RequestController());
             Get.offAll(() => HomePage());
           },
           codeAutoRetrievalTimeout: (String verificationId) {},
@@ -124,6 +126,7 @@ class AuthController extends GetxController {
               'phoneNumber': phoneNumber,
               'vehicle': vehicle.toJson(),
             });
+            Get.put(RequestController());
             Get.to(() => HomePage());
           },
           codeAutoRetrievalTimeout: (String verificationId) {},
