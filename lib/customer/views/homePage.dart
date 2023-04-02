@@ -304,7 +304,7 @@ class _HomePageState extends State<HomePage> {
                           ElevatedButton(
                             onPressed: () {
                               //_showBottomSheet(context);
-                              Get.to(() => BookingPage(friends["id"]));
+                              Get.to(() => BookingPage(id: friends["id"]));
                             },
                             child: Text('Book'),
                             style: ElevatedButton.styleFrom(

@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:smart_station/customer/views/loginScreen.dart';
 import 'package:smart_station/main.dart';
 import 'package:smart_station/owner/controllers/homeTabController.dart';
+import 'package:smart_station/owner/controllers/requestTabController.dart';
 import 'package:smart_station/owner/models/facilitiesModel.dart';
 import 'package:smart_station/owner/models/smartStationModel.dart';
 
@@ -27,6 +28,7 @@ class OwnerAuthController extends GetxController {
 
   _setInitialScreen(User? user) {
     if (user != null) {
+      Get.put(RequestListController());
       Get.put(HomeTabController());
       Get.offAll(() => OwnerHomePage());
     } else {
@@ -78,7 +80,7 @@ class OwnerAuthController extends GetxController {
                 await _auth.signInWithCredential(credential);
 
             // create customer document in firestore
-
+            Get.put(RequestListController());
             Get.offAll(() => OwnerHomePage());
           },
           codeAutoRetrievalTimeout: (String verificationId) {},
@@ -148,7 +150,7 @@ class OwnerAuthController extends GetxController {
             FirebaseFirestore.instance
                 .collection('smartStations')
                 .add(smartStation.toJson());
-
+            Get.put(RequestListController());
             Get.to(() => OwnerHomePage());
           },
           codeAutoRetrievalTimeout: (String verificationId) {},
