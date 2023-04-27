@@ -98,47 +98,13 @@ class _HomePageState extends State<HomePage> {
         markerId: MarkerId(position.toString()),
         position: position,
         draggable: false,
-        // infoWindow: InfoWindow(
-        //   title: friends['locName'],
-        //   snippet: 'Tap to Navigate',
-        //   onTap: () async {
-        //     final url = 'https://www.google.com/maps/dir/?api=1&destination=' +
-        //         friends['location'].latitude.toString() +
-        //         ',' +
-        //         friends['location'].longitude.toString();
-        //     if (await canLaunch(url)) {
-        //       await launch(url);
-        //     } else {
-        //       throw 'Could not launch $url';
-        //     }
-        //   },
-        // ),
+        
       ),
     );
 
     setState(() {});
   }
 
-// void initMarker(friends) {
-//   if (friends['location']?.latitude == null || friends['location']?.longitude == null) {
-//   return;
-// }
-
-// LatLng position = LatLng(
-//   friends['location']!.latitude,
-//   friends['location']!.longitude,
-// );
-
-//   _markers.add(
-//     Marker(
-//       markerId: MarkerId(position.toString()),
-//       position: position,
-//       draggable: false,
-//     ),
-//   );
-
-//   _markers = Set.of(_markers);
-// }
 
   Widget friendsCard(Map<String, dynamic> friends) {
     double distanceInMeters = Geolocator.distanceBetween(
@@ -263,8 +229,7 @@ class _HomePageState extends State<HomePage> {
                           SizedBox(height: 5.0),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            // mainAxisAlignment: MainAxisAlignment.center,
-                            //crossAxisAlignment: CrossAxisAlignment.center,
+                           
                             children: [
                               Text(
                                 "${friends['smartStation']['address'].replaceAll(new RegExp(r'\b\d{6}\b'), '').replaceAll(', Chennai', '').replaceAll(RegExp(r', Chennai \d{6}$|-'), '')}",
@@ -376,49 +341,7 @@ class _HomePageState extends State<HomePage> {
     )));
   }
 
-  // void _showBottomSheet(BuildContext context) {
-  //   showModalBottomSheet(
-  //     context: context,
-  //     shape: RoundedRectangleBorder(
-  //       borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-  //     ),
-  //     builder: (BuildContext context) {
-  //       return Container(
-  //         padding: EdgeInsets.symmetric(horizontal: 20),
-  //         child: Column(
-  //           mainAxisSize: MainAxisSize.min,
-  //           children: [
-  //             SizedBox(height: 50),
-  //             Text(
-  //               'Bottom Sheet Title',
-  //               style: TextStyle(
-  //                 fontSize: 20,
-  //                 fontWeight: FontWeight.bold,
-  //               ),
-  //             ),
-  //             SizedBox(height: 20),
-  //             Text(
-  //               'Bottom Sheet Message',
-  //               style: TextStyle(
-  //                 fontSize: 16,
-  //               ),
-  //             ),
-  //             SizedBox(height: 20),
-  //             ElevatedButton(
-  //               onPressed: () {
-  //                 // _showBottomSheet(context);
-  //                 // launch(
-  //                 //     'https://www.google.com/maps/dir/?api=1&destination=${friends['location']},${friends[1].longitude}&travelmode=driving');
-  //               },
-  //               child: Text('BOOK'),
-  //             ),
-  //             SizedBox(height: 20),
-  //           ],
-  //         ),
-  //       );
-  //     },
-  //   );
-  // }
+  
 
   @override
   Widget build(BuildContext context) {
