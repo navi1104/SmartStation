@@ -9,6 +9,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:smart_station/customer/controllers/custAuthController.dart';
 import 'package:smart_station/customer/controllers/requestController.dart';
+import 'package:smart_station/customer/views/navbarHomePage.dart';
 import 'package:smart_station/owner/controllers/requestTabController.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -98,13 +99,11 @@ class _HomePageState extends State<HomePage> {
         markerId: MarkerId(position.toString()),
         position: position,
         draggable: false,
-        
       ),
     );
 
     setState(() {});
   }
-
 
   Widget friendsCard(Map<String, dynamic> friends) {
     double distanceInMeters = Geolocator.distanceBetween(
@@ -144,8 +143,8 @@ class _HomePageState extends State<HomePage> {
                 color: Colors.white,
               ),
               child: Padding(
-                padding:
-                    const EdgeInsets.only(left: 20.0, top: 15.0, right: 20.0),
+                padding: const EdgeInsets.only(
+                    left: 20.0, top: 15.0, bottom: 10.0, right: 20.0),
                 child: SingleChildScrollView(
                   child: Column(
                     //mainAxisAlignment: MainAxisAlignment.center,
@@ -229,7 +228,6 @@ class _HomePageState extends State<HomePage> {
                           SizedBox(height: 5.0),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                           
                             children: [
                               Text(
                                 "${friends['smartStation']['address'].replaceAll(new RegExp(r'\b\d{6}\b'), '').replaceAll(', Chennai', '').replaceAll(RegExp(r', Chennai \d{6}$|-'), '')}",
@@ -341,27 +339,21 @@ class _HomePageState extends State<HomePage> {
     )));
   }
 
-  
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        floatingActionButton: FloatingActionButton(
+        drawer: NavBar(),
+        /*floatingActionButton: FloatingActionButton(
             onPressed: () {
               _authController.signOut();
             },
-            child: Icon(Icons.logout)),
-        // appBar: AppBar(
-        //   title: Text(
-        //     "Customer Home Page",
-        //     style: TextStyle(fontSize: 15, color: Colors.white),
-        //   ),
-        //   actions: [
-
-        //   ],
-        // ),
+            child: Icon(Icons.logout)),*/
+        appBar: AppBar(
+          backgroundColor: Colors.orange,
+          actions: [],
+        ),
         body: Column(
           children: [
             Expanded(
@@ -389,10 +381,10 @@ class _HomePageState extends State<HomePage> {
                           ),
                   ),
                   Positioned(
-                      top: MediaQuery.of(context).size.height - 250,
+                      top: MediaQuery.of(context).size.height - 310,
                       left: 10.0,
                       right: 10.0,
-                      bottom: MediaQuery.of(context).size.height - 850,
+                      bottom: MediaQuery.of(context).size.height - 800,
                       child: Container(
                         height: MediaQuery.of(context).size.height,
                         width: MediaQuery.of(context).size.width - 50,
