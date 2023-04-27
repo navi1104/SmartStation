@@ -9,9 +9,6 @@ class RequestsTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Requests'),
-      ),
       body: Obx(() {
         if (_requestListController.requestsList.isEmpty) {
           return Center(
